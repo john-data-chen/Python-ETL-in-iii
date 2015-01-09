@@ -1,5 +1,5 @@
 #! coding=UTF-8
-__author__ = 'kratos.chen'
+__author__ = 'john.chen'
 
 import requests
 from bs4 import BeautifulSoup
