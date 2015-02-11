@@ -1,0 +1,29 @@
+# coding=utf-8
+__author__ = 'john.chen'
+
+import requests
+from bs4 import BeautifulSoup
+
+payload = {
+'ctl00$ContentPlaceHolder1$ScriptManager1':'ctl00$ContentPlaceHolder1$updatePanel1|go',
+'__EVENTTARGET':'',
+'__EVENTARGUMENT':'',
+'__LASTFOCUS':'',
+'__VIEWSTATE':'/wEPDwUJNDk1MzUzNTIyDxYIHgNjb2wFCXBlcmZvcl90eR4JZGlyZWN0aW9uBQRkZXNjHgdub3dwYWdlBQExHgl0b3RhbHBhZ2UCVxYCZg9kFgICCQ9kFgICAQ9kFgICAw9kFgJmD2QWBGYPEBYIHghvbmNoYW5nZQUqQ2hnRVRGVHlwZSgiY3RsMDBfQ29udGVudFBsYWNlSG9sZGVyMV9zMSIpHg1EYXRhVGV4dEZpZWxkBQhldGYxbmFtZR4ORGF0YVZhbHVlRmllbGQFCGV0ZjFjb2RlHgtfIURhdGFCb3VuZGcQFQYJ5Zyw5Z+f5YilCeizh+eUouWIpQnluILlgLzliKUJ55Si5qWt5YilDOeZvOihjOWVhuWIpQ/mipXos4fpoqjmoLzliKUVBgRBUkVBBUFTU0VUA0NBUAhJTkRVU1RSWQVJU1NVRQVTVFlMRRQrAwZnZ2dnZ2dkZAIBDxAWAh8EBSpDaGdFVEZUeXBlKCJjdGwwMF9Db250ZW50UGxhY2VIb2xkZXIxX3MyIilkZGRk+Og75uyAzMliY9qnW5AC6L4Z8nY=',
+'_VIEWSTATEGENERATOR':'341F8F52',
+'__EVENTVALIDATION':'/wEWdQLj4ZD/BgLduNOyCQLduL9XAt24q/wHAqeBkdoLAqeBldoLAqeBmdoLAuGH4bYBAuGHpbcBApvSvPUFApvSgPYFArW0nsUKAqS0nsUKAsPQvNQPArLQvNQPAvHFrAEC4MWsAQLxxbQDAuDFtAMC8cXABgLgxcAGArW0koAKAqS0koAKArW0moIKAqS0moIKArW0ooQKAqS0ooQKAsnS4T0Cxr3L0wwCx73L0wwCxL3L0wwCxb3L0wwCwr3L0wwCw73L0wwCwL3L0wwC0b3L0wwC3r3L0wwCxr2L0AwCxr2H0AwCxr2D0AwCxr2/0AwCxr270AwCxr230AwCxr2z0AwCxr2v0AwCxr3r0wwCxr3n0wwCx72L0AwCx72H0AwCx72D0AwCx72/0AwCx7270AwCx7230AwCx72z0AwCx72v0AwCx73r0wwCx73n0wwCxL2L0AwCxL2H0AwCxL2D0AwCxL2/0AwCxL270AwCxL230AwCxL2z0AwCxL2v0AwCxL3r0wwCxL3n0wwCxb2L0AwCxb2H0AwCxb2D0AwCxb2/0AwCxb270AwCxb230AwCxb2z0AwCxb2v0AwCxb3r0wwCxb3n0wwCwr2L0AwCwr2H0AwCwr2D0AwCwr2/0AwCwr270AwCwr230AwCwr2z0AwCwr2v0AwCwr3r0wwCwr3n0wwCw72L0AwCw72H0AwCw72D0AwCw72/0AwCw7270AwCw7230AwCw72z0AwCw72v0AwCw73r0wwCw73n0wwCwL2L0AwCwL2H0AwCwL2D0AwCwL2/0AwCwL270AwCwL230AwCwL2z0AwCwL2v0AwCwL3r0wwCwL3n0wwC0b2L0AwC0b2H0AwC0b2D0AwC0b2/0AwC0b270AwC0b230AwC0b2z0AwC0b2v0AwC6KnCuQ0C96KI+AmvrIrY1e5znb4SO8jaXYG0OmcBTw==',
+'rdmenu':'on',
+'ctl00$ContentPlaceHolder1$s1':'AREA',
+'ctl00$ContentPlaceHolder1$s2':'sincountry',
+'ctl00$ContentPlaceHolder1$s3':'US',
+'ctl00$ContentPlaceHolder1$hid1':'AREA',
+'ctl00$ContentPlaceHolder1$hid2':'sincountry',
+'ctl00$ContentPlaceHolder1$hid3':'US',
+'ctl00$ContentPlaceHolder1$PageSeprater1$DDLPage':'1',
+'go':'Go'
+}
+
+res = requests.post("http://www.cnyes.com/usastock/Rankings/etf2_screener.aspx", data = payload)
+soup = BeautifulSoup(res.text)
+for td in soup.select(".tabs2"):
+    print td.text.strip()
